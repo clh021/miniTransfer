@@ -23,7 +23,6 @@ var (
 func main() {
 	fmt.Printf("Build: %s\n", build)
 	flag.IntVar(&port, "port", 1234, "set port")
-	flag.StringVar(&base, "path", "/tmp/", "set path")
 	flag.Parse()
 
 	http.HandleFunc("/", miniTransfer.FileHandler)

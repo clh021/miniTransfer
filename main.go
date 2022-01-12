@@ -8,7 +8,9 @@ import (
 	"path/filepath"
 )
 
-func FileHandler(w http.ResponseWriter, r *http.Request, basePath string) {
+var basePath = "/tmp/"
+
+func FileHandler(w http.ResponseWriter, r *http.Request) {
 	filePath := filepath.Join(basePath, r.URL.Path)
 	if r.Method == http.MethodGet {
 		http.ServeFile(w, r, filePath)
