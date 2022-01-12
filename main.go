@@ -17,6 +17,7 @@ func getFileSavePath() string {
 		env_name := "MINI_TRANSFER_FILE_PATH"
 		env_path, exist := os.LookupEnv(env_name)
 		if !exist {
+			mem_fileSavePath = default_save_path
 			log.Printf("No env `%s` set. You can set like default `%s`", env_name, default_save_path)
 		} else {
 			if len(env_path) > 0 {
@@ -42,7 +43,6 @@ func EnsureDir(baseDir string) error {
 
 func FileHandler(w http.ResponseWriter, r *http.Request) {
 	savePath := filepath.Join(getFileSavePath(), r.URL.Path)
-
 	if r.Method == http.MethodGet {
 		http.ServeFile(w, r, savePath)
 		log.Printf(" ▽ : %s\n", savePath)
