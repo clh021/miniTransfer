@@ -14,7 +14,7 @@ func FileHandler(w http.ResponseWriter, r *http.Request) {
 	filePath := filepath.Join(basePath, r.URL.Path)
 	if r.Method == http.MethodGet {
 		http.ServeFile(w, r, filePath)
-		log.Printf("download file %s\n", filePath)
+		log.Printf(" ▽ : %s\n", filePath)
 	} else {
 		b, err := ioutil.ReadAll(r.Body)
 		if err != nil {
@@ -32,6 +32,6 @@ func FileHandler(w http.ResponseWriter, r *http.Request) {
 
 		w.WriteHeader(200)
 		_, _ = w.Write([]byte(fmt.Sprintf("OK %s", filePath)))
-		log.Printf("upload file %s\n", filePath)
+		log.Printf(" △ : %s\n", filePath)
 	}
 }

@@ -9,12 +9,12 @@ security:
 	@gosec ./...
 	@echo "[OK] Go security check was completed!"
 
-gitTime=$(shell date +00%y%m%d%H%M%S)
-gitCID=$(shell git rev-parse HEAD)
+gitTime=$(shell date +%Y%m%d_%H%M%S)
+gitCID=$(shell git rev-parse --short HEAD)
 # gitTime=$(git log -1 --format=%at | xargs -I{} date -d @{} +%Y%m%d_%H%M%S)
 # 去除 符号信息 和 调试信息  -ldflags="-s -w"
 build: generate
-	@cd cmd;go build -ldflags "-s -w -X main.build=${gitTime}.${gitCID}" -o "../bin/mini_transfer"
+	@cd cmd;go build -ldflags "-s -w -X main.build=${gitTime}_${gitCID}" -o "../bin/mini_transfer"
 	@echo "[OK] App binary was created!"
 
 buildcross: generate

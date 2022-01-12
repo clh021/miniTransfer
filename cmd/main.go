@@ -11,17 +11,14 @@ import (
 
 var build = "not set"
 
-var (
-	port int
-	base string
-)
+var port int
 
 // upload file
 // > curl -T filename.txt 127.0.0.1:1234
 // downlod file
 // > curl 127.0.0.1:1234/filename.txt
 func main() {
-	fmt.Printf("Build: %s\n", build)
+	fmt.Printf("[BUILD_INFO]: %s\n", build)
 	flag.IntVar(&port, "port", 1234, "set port")
 	flag.Parse()
 
